@@ -27,53 +27,6 @@
 
 #include "objc-private.h"
 
-#if TARGET_OS_WIN32
-
-#include <conio.h>
-
-void _objc_inform_on_crash(const char *fmt, ...)
-{
-}
-
-void _objc_inform(const char *fmt, ...)
-{
-    va_list args;
-    va_start(args, fmt);
-    _vcprintf(fmt, args);
-    va_end(args);
-    _cprintf("\n");
-}
-
-void _objc_fatal(const char *fmt, ...)
-{
-    va_list args;
-    va_start(args, fmt);
-    _vcprintf(fmt, args);
-    va_end(args);
-    _cprintf("\n");
-
-    abort();
-}
-
-void __objc_error(id rcv, const char *fmt, ...) 
-{
-    va_list args;
-    va_start(args, fmt);
-    _vcprintf(fmt, args);
-    va_end(args);
-
-    abort();
-}
-
-void _objc_error(id rcv, const char *fmt, va_list args) 
-{
-    _vcprintf(fmt, args);
-
-    abort();
-}
-
-#else
-
 #include <_simple.h>
 
 // Return true if c is a UTF8 continuation byte
@@ -283,8 +236,6 @@ void _objc_inform_now_and_on_crash(const char *fmt, ...)
     free(buf2);
     free(buf1);
 }
-
-#endif
 
 
 BREAKPOINT_FUNCTION( 

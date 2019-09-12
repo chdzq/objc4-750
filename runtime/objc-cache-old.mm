@@ -125,9 +125,7 @@ enum {
 #define TABLE_SIZE(count)  ((count - 1) * sizeof(cache_entry *))
 
 
-#if !TARGET_OS_WIN32
 #   define CACHE_ALLOCATOR
-#endif
 
 /* Custom cache allocator parameters.
  * CACHE_REGION_SIZE must be a multiple of CACHE_QUANTUM. */
@@ -312,7 +310,6 @@ static void _cache_free_block(void *block)
 {
     cacheUpdateLock.assertLocked();
 
-#if !TARGET_OS_WIN32
     if (PrintCaches) {
         Cache cache = (Cache)block;
         size_t slotCount = cache->mask + 1;
@@ -323,7 +320,6 @@ static void _cache_free_block(void *block)
             }
         }
     }
-#endif
 
 #if defined(CACHE_ALLOCATOR)
     if (cache_allocator_is_block(block)) {
@@ -643,7 +639,6 @@ void flush_cache(Class cls)
 * cache collection.
 **********************************************************************/
 
-#if !TARGET_OS_WIN32
 
 // A sentinel (magic value) to report bad thread_get_state status.
 // Must not be a valid PC.
@@ -654,7 +649,6 @@ void flush_cache(Class cls)
 #if !__DARWIN_UNIX03
 #define __srr0 srr0
 #define __eip eip
-#endif
 
 static uintptr_t _get_pc_for_thread(thread_t thread)
 #if defined(__i386__)
@@ -698,9 +692,6 @@ extern "C" uintptr_t objc_exitPoints[];
 
 static int _collecting_in_critical(void)
 {
-#if TARGET_OS_WIN32
-    return TRUE;
-#else
     thread_act_port_array_t threads;
     unsigned number;
     unsigned count;
@@ -760,7 +751,6 @@ static int _collecting_in_critical(void)
 
     // Return our finding
     return result;
-#endif
 }
 
 
@@ -890,11 +880,7 @@ void _cache_collect(bool collectALot)
             int slots = 1 << i;
             size_t size = sizeof(struct objc_cache) + TABLE_SIZE(slots);
             size_t ideal = size;
-#if TARGET_OS_WIN32
-            size_t malloc = size;
-#else
             size_t malloc = malloc_good_size(size);
-#endif
             size_t local = size < CACHE_ALLOCATOR_MIN ? malloc : cache_allocator_size_for_mask(cache_allocator_mask_for_size(size));
 
             if (!count) continue;

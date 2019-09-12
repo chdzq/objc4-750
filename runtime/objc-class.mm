@@ -1005,10 +1005,6 @@ _class_createInstancesFromZone(Class cls, size_t extraBytes, void *zone,
 void 
 inform_duplicate(const char *name, Class oldCls, Class newCls)
 {
-#if TARGET_OS_WIN32
-    (DebugDuplicateClasses ? _objc_fatal : _objc_inform)
-        ("Class %s is implemented in two different images.", name);
-#else
     const header_info *oldHeader = _headerForClass(oldCls);
     const header_info *newHeader = _headerForClass(newCls);
     const char *oldName = oldHeader ? oldHeader->fname() : "??";
@@ -1018,7 +1014,6 @@ inform_duplicate(const char *name, Class oldCls, Class newCls)
         ("Class %s is implemented in both %s (%p) and %s (%p). "
          "One of the two will be used. Which one is undefined.",
          name, oldName, oldCls, newName, newCls);
-#endif
 }
 
 

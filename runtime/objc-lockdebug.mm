@@ -28,7 +28,7 @@
 
 #include "objc-private.h"
 
-#if LOCKDEBUG  &&  !TARGET_OS_WIN32
+#if LOCKDEBUG
 
 #include <unordered_map>
 

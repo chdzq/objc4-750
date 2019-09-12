@@ -516,7 +516,7 @@ const NXMapTablePrototype NXStrValueMapPrototype = {
 };
 
 
-#if !__OBJC2__  &&  !TARGET_OS_WIN32
+#if !__OBJC2__
 
 /* This only works with class Object, which is unavailable. */
 

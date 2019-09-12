@@ -361,19 +361,6 @@ public:
     struct old_protocol **proto_refs;
     struct objc_module *mod_ptr;
     size_t              mod_count;
-# if TARGET_OS_WIN32
-    struct objc_module **modules;
-    size_t moduleCount;
-    struct old_protocol **protocols;
-    size_t protocolCount;
-    void *imageinfo;
-    size_t imageinfoBytes;
-    SEL *selrefs;
-    size_t selrefCount;
-    struct objc_class **clsrefs;
-    size_t clsrefCount;    
-    TCHAR *moduleName;
-# endif
 #endif
 
 private:

@@ -550,7 +550,7 @@ const NXHashTablePrototype NXStrStructKeyPrototype = {
  *	
  *************************************************************************/
 
-#if !__OBJC2__  &&  !TARGET_OS_WIN32
+#if !__OBJC2__
 
 /* the implementation could be made faster at the expense of memory if the size of the strings were kept around */
 static NXHashTable *uniqueStrings = NULL;

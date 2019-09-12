@@ -365,14 +365,10 @@ logReplacedMethod(const char *className, SEL s,
     // Silently ignore +load replacement because category +load is special
     if (s == SEL_load) return;
 
-#if TARGET_OS_WIN32
-    // don't know dladdr()/dli_fname equivalent
-#else
     Dl_info dl;
 
     if (dladdr((void*)oldImp, &dl)  &&  dl.dli_fname) oldImage = dl.dli_fname;
     if (dladdr((void*)newImp, &dl)  &&  dl.dli_fname) newImage = dl.dli_fname;
-#endif
     
     _objc_inform("REPLACED: %c[%s %s]  %s%s  (IMP was %p (%s), now %p (%s))",
                  isMeta ? '+' : '-', className, sel_getName(s), 

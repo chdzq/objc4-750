@@ -641,8 +641,6 @@ void cache_delete(Class cls)
 * cache collection.
 **********************************************************************/
 
-#if !TARGET_OS_WIN32
-
 // A sentinel (magic value) to report bad thread_get_state status.
 // Must not be a valid PC.
 // Must not be zero - thread_get_state() on a new thread returns PC == 0.
@@ -683,8 +681,6 @@ static uintptr_t _get_pc_for_thread(thread_t thread)
 }
 #endif
 
-#endif
-
 /***********************************************************************
 * _collecting_in_critical.
 * Returns TRUE if some thread is currently executing a cache-reading 
@@ -697,9 +693,6 @@ extern "C"  uintptr_t objc_exitPoints[];
 
 static int _collecting_in_critical(void)
 {
-#if TARGET_OS_WIN32
-    return TRUE;
-#else
     thread_act_port_array_t threads;
     unsigned number;
     unsigned count;
@@ -764,7 +757,6 @@ static int _collecting_in_critical(void)
 
     // Return our finding
     return result;
-#endif
 }
 
 

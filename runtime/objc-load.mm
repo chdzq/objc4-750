@@ -31,7 +31,7 @@
 #include "objc-private.h"
 #include "objc-load.h"
 
-#if !__OBJC2__  &&  !TARGET_OS_WIN32
+#if !__OBJC2__
 
 extern void (*callbackFunction)( Class, Category );
 

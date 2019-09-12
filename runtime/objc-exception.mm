@@ -177,11 +177,7 @@ static void default_throw(id value) {
     chainLink->topHandler = (LocalData_t *)
         led->pointers[1];	// pop top handler
     led->pointers[0] = value;			// store exception that is thrown
-#if TARGET_OS_WIN32
-    longjmp(led->buf, 1);
-#else
     _longjmp(led->buf, 1);
-#endif
 }
     
 static void default_try_exit(void *led) {
