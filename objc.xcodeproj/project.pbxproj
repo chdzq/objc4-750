@@ -111,6 +111,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		630ECC2D2329F86800D4B604 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC0620554660B00DB518D;
+			remoteInfo = objc;
+		};
 		837F67AC1A771F6E004D34FA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
@@ -121,13 +128,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		6DA571A521B8E9C600EE61A4 /* CopyFiles */ = {
+		6DA571A521B8E9C600EE61A4 /* Copy Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
 			);
+			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -262,6 +270,7 @@
 				838485B20D6D67F900CEA253 /* Other */,
 				6DA571A821B8E9C600EE61A4 /* objc-debug */,
 				1AB674ADFE9D54B511CA2CBB /* Products */,
+				630ECC292329F7C100D4B604 /* Frameworks */,
 			);
 			name = objc;
 			sourceTree = "<group>";
@@ -328,6 +337,13 @@
 				6DA571A721B8E9C600EE61A4 /* objc-debug */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		630ECC292329F7C100D4B604 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		6DA571A821B8E9C600EE61A4 /* objc-debug */ = {
@@ -479,11 +495,12 @@
 			buildPhases = (
 				6DA571A321B8E9C600EE61A4 /* Sources */,
 				6DA571A421B8E9C600EE61A4 /* Frameworks */,
-				6DA571A521B8E9C600EE61A4 /* CopyFiles */,
+				6DA571A521B8E9C600EE61A4 /* Copy Files */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				630ECC2E2329F86800D4B604 /* PBXTargetDependency */,
 			);
 			name = "objc-debug";
 			productName = "objc-debug";
@@ -562,7 +579,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -x\n/usr/bin/xcrun -sdk macosx clang++ -Wall -mmacosx-version-min=10.9 -arch x86_64 -std=c++11 \"${SRCROOT}/markgc.cpp\" -o \"${BUILT_PRODUCTS_DIR}/markgc\"\n\"${BUILT_PRODUCTS_DIR}/markgc\" \"${BUILT_PRODUCTS_DIR}/libobjc.A.dylib\"";
+			shellScript = "set -x\n/usr/bin/xcrun -sdk macosx clang++ -Wall -mmacosx-version-min=10.9 -arch x86_64 -std=c++11 \"${SRCROOT}/markgc.cpp\" -o \"${BUILT_PRODUCTS_DIR}/markgc\"\n\"${BUILT_PRODUCTS_DIR}/markgc\" \"${BUILT_PRODUCTS_DIR}/libobjc.A.dylib\"\n";
 		};
 		830F2AFA0D73BC5800392440 /* Run Script (symlink) */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -649,6 +666,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		630ECC2E2329F86800D4B604 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D2AAC0620554660B00DB518D /* objc */;
+			targetProxy = 630ECC2D2329F86800D4B604 /* PBXContainerItemProxy */;
+		};
 		837F67AD1A771F6E004D34FA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D2AAC0620554660B00DB518D /* objc */;
